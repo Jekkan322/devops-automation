@@ -28,7 +28,6 @@
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
-
 	<build>
 		<plugins>
 			<plugin>
@@ -38,5 +37,4 @@
 		</plugins>
 		<finalName>devops-integration</finalName>
 	</build>
-
 </project>
