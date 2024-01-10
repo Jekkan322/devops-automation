@@ -10,6 +10,16 @@ pipeline {
                 bat 'mvn clean install'
             }
         }
+         stage('Java tests'){
+            steps{
+                bat 'mvn test'
+            }
+            post {
+                always {
+                    junit '**/target/surefire-reports/TEST-*.xml'
+                }
+            }
+        }
         stage('Build docker image'){
             steps{
                 script{
@@ -30,7 +40,7 @@ pipeline {
         stage('Deploy to k8s'){
             steps{
                 script{
-                    kubernetesDeploy (configs: 'deploymentservice.yaml', kubeconfigId: 'k8spwd')
+                    kubernetesDeploy (configs: 'deploymentservice.yaml', kubeconfigId: 'k8spwdconfig')
                 }
             }
         }
